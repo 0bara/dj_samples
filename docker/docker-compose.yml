@@ -1,0 +1,16 @@
+version: "2"
+services:
+    django:
+        build: ../django
+        ports:
+            - 8000:8000
+        working_dir: '/opt/projects'
+        command: python ${PRJ}/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - web:/opt/projects
+volumes:
+    web:
+        driver_opts:
+            type: none
+            device: $PWD/projects
+            o: bind
